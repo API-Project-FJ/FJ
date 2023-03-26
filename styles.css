@@ -23,3 +23,12 @@ img{
     grid-gap: 10px;
     justify-items: center;
 }
+#movie-title{
+    font-size: 30px;
+    text-align: center;
+    
+}
+
+/* //shows color for movie title  */
+
+/* //tug of war on hover enlarges the image and changes the color of the border the main moive color theme */
