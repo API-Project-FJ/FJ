@@ -1,0 +1,25 @@
+body {
+    background: black!important;
+    color: white !important;
+}
+#game-title{
+    text-align: center;
+    font-size: 50px;
+    
+}
+img{
+    width: 300px;
+    border: 5px solid yellow;
+}
+
+.game-container{
+    margin-top: 50px;
+    display: grid;
+   /*side by side*/
+    grid-template-columns: 1fr 1fr;
+    /*top to bottom*/
+    grid-template-rows: 1fr 1fr;
+    /*gap between the two*/
+    grid-gap: 10px;
+    justify-items: center;
+}
