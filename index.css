@@ -13,7 +13,7 @@ body {
 
   #container {
     width: 100%;
-    height: 700px;
+    height: 500px;
     -webkit-perspective: 800; /* For compatibility with iPhone 3.0, we leave off the units here */
     -webkit-perspective-origin: 50% 225px;
   }
@@ -22,6 +22,7 @@ body {
     height: 100%;
     -webkit-transition: -webkit-transform 2s;
     -webkit-transform-style: preserve-3d;
+    translateZ:-200px;
   }
   
   #shape {

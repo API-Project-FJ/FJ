@@ -8,8 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let firstMovie = document.querySelector("#first-movie");
     let secondMovie = document.querySelector("#second-movie");
     let score = document.querySelector("#score");
-    let scoreCount = 0;
     let highScoreText = document.querySelector("#high-score");
+    let scoreCount = 0;
     let movieRating = [];
 
 
@@ -32,14 +32,16 @@ document.addEventListener("DOMContentLoaded", () => {
             const ratingResponse = await fetch(`https://moviesdatabase.p.rapidapi.com/titles/${imdbID}/ratings`, options)
             const ratingData = await ratingResponse.json();
             const rating = ratingData.results.averageRating;
+            
             console.log(rating,data.results[randomMovie].titleText.text)
             movieRating.push(rating)
             console.log(movieRating)
-            console.log(data)
+            console.log(data,"data")
             console.log(data.results[randomMovie].primaryImage.url)
             console.log(data.results[randomMovie].titleText.text)
+            
             poster.src = data.results[randomMovie].primaryImage.url;
-            title.innerText = data.results[randomMovie].titleText.text;
+            title.innerText = data.results[randomMovie].titleText.text;// jackie
             score.innerText = `Score: ${scoreCount}`;
             
             if (title.innerText === "What's Love Got to Do with It?" || data.status === 404 || title.innerText === "The Boy, the Mole, the Fox and the Horse" || title.innerText === "Escape from Alcatraz") {
@@ -119,7 +121,13 @@ document.addEventListener("DOMContentLoaded", () => {
 //if the selected movie is the same as the one with the higher rating, the user scores points
 //if the selected movie is the same as the one with the lower rating, loses the game
 
-
+//hints
+// Date released
+// Background info
+// Cast
+// Director
+// Genre
+//
 
 //known bugs
 //costantine gives 404 error and does not load image + game does not re roll
