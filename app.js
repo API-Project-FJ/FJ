@@ -1,6 +1,6 @@
 import { API_KEY } from './api-key.js';
 
-var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
 var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
   return new bootstrap.Popover(popoverTriggerEl);
 });
@@ -17,6 +17,11 @@ document.addEventListener("DOMContentLoaded", () => {
     let highScoreText = document.querySelector("#high-score");
     let scoreCount = 0;
     let movieRating = [];
+    let cast = "";
+    let director = "";
+    let releaseDate = "";
+    let backgroundInfo = "";
+
 
 
     const options = {
@@ -31,14 +36,28 @@ document.addEventListener("DOMContentLoaded", () => {
         const randomMovie = Math.floor(Math.random() * Math.floor(50));
         const randomPage = Math.floor(Math.random() * Math.floor(5) + 1);
         try {
-            const response = await fetch(`https://moviesdatabase.p.rapidapi.com/titles?list=most_pop_movies&limit=50&page=${randomPage}`, options)
+            const response = await fetch(`https://moviesdatabase.p.rapidapi.com/titles?list=most_pop_movies&limit=50&page=${randomPage}`, options);
             const data = await response.json();
 
-            let imdbID = data.results[randomMovie].id
-            const ratingResponse = await fetch(`https://moviesdatabase.p.rapidapi.com/titles/${imdbID}/ratings`, options)
+            let imdbID = data.results[randomMovie].id;
+            const ratingResponse = await fetch(`https://moviesdatabase.p.rapidapi.com/titles/${imdbID}/ratings`, options);
             const ratingData = await ratingResponse.json();
             const rating = ratingData.results.averageRating;
+            //////////////////////////////////////////
             
+            const movieResponse = await fetch(`https://moviesdatabase.p.rapidapi.com/titles/${imdbID}`, options);
+            const movieData = await movieResponse.json();
+            cast = movieData.results.principalCast;
+            director = movieData.results.directors;
+            releaseDate = movieData.results.releaseDate;
+            const day = releaseDate.day;
+            const month = releaseDate.month;
+            const year = releaseDate.year;
+            
+            releaseDate = new Date(year, month, day);
+            backgroundInfo = movieData.results.synopsis;
+            
+            ///////////////////////////////////////////
             console.log(rating,data.results[randomMovie].titleText.text)
             movieRating.push(rating)
             console.log(movieRating)
@@ -62,39 +81,76 @@ document.addEventListener("DOMContentLoaded", () => {
             fetchData(poster, title)
         }
     }
+    
+    
     firstMovie.addEventListener("click", () => {
         let movieClicked = "first"
         checkRating(movieClicked)
-    })
+    });
     secondMovie.addEventListener("click", () => {
         let movieClicked = "second"
         checkRating(movieClicked)
-    })
+    });
+    
+    const createHintMessages = (messages) => messages.map((message) => {
+        const elem = document.createElement("p")
+        elem.innerHTML = message;
+    
+        return elem;
+    });
+    
     function checkRating(movieClicked) {
+        let hintMessages = [];
+       
         if (movieRating[0] > movieRating[1] && movieClicked === "first") {
             scoreCount++
             score.innerText = `Score: ${scoreCount}`;
+            hintMessages = [
+                `This movie was released in ${releaseDate}.`,
+                `The director of this movie is ${director}.`,
+                `This movie features ${cast}.`,
+                `Here's some background info on this movie: ${backgroundInfo}.`
+            ];
             console.log("correct answer")
             nextRound()
         } else if (movieRating[0] < movieRating[1] && movieClicked === "second") {
             scoreCount++
             score.innerText = `Score: ${scoreCount}`;
+            hintMessages = [
+                `This movie was released in ${releaseDate}.`,
+                `The director of this movie is ${director}.`,
+                `This movie features ${cast}.`,
+                `Here's some background info on this movie: ${backgroundInfo}.`
+            ];
             console.log("correct answer")
             nextRound()
         } else {
+            hintMessages = ["wrong answer"];
             console.log("wrong answer")
             nextRound()
         }
+        
+        console.log({hintMessages});
+        
 
+        const popoverBody = document.querySelector(".popover-body");
+        
+        if (popoverBody) {
+            popoverBody.replaceChildren(...createHintMessages(hintMessages));
+        }
     }
+    
+        
+    
+    
     async function nextRound(){
         movieRating = [];
-        setHighScore()
-        await fetchData(firstMoviePoster, firstMovieTitle)
-        await fetchData(secondMoviePoster, secondMovieTitle)
+        setHighScore();
+        await fetchData(firstMoviePoster, firstMovieTitle);
+        await fetchData(secondMoviePoster, secondMovieTitle);
         
     }
-    nextRound()
+    nextRound();
     
 
     function setHighScore(){
@@ -110,7 +166,8 @@ document.addEventListener("DOMContentLoaded", () => {
     //brb
     
     
-})
+});
+
 
 //
 //to do
