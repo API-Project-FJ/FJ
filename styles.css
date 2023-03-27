@@ -5,29 +5,45 @@ body {
 #game-title{
     text-align: center;
     font-size: 50px;
+    margin-top: 25px;
     
 }
 img{
     width: 300px;
-    border: 5px solid yellow;
+    border: 5px dashed rgb(255, 187, 0);
 }
 
 .game-container{
-    margin-top: 50px;
+    
     display: grid;
-   /*side by side*/
     grid-template-columns: 1fr 1fr;
-    /*top to bottom*/
-    grid-template-rows: 1fr 1fr;
-    /*gap between the two*/
+
     grid-gap: 10px;
     justify-items: center;
+    margin-top: 50px;
 }
-#movie-title{
+.movie{
     font-size: 30px;
     text-align: center;
+    cursor: pointer;
+    
     
 }
+
+.movie:hover{
+    border: 3px solid rgb(255, 0, 0);
+    transform: scale(1.1);
+}
+/* /to do */
+/* //if movie is correct it will change the border color to green
+// if movie is incorrect it will change the border color to red */
+#score-section{
+    display: flex;
+    font-size: 30px;
+    margin: 30px;
+    justify-content: space-evenly;
+}
+
 
 /* //shows color for movie title  */
 
