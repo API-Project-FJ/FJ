@@ -1,6 +1,9 @@
 body {
-    background: black!important;
-    color: white !important;
+    background:URL(https://ak.picdn.net/shutterstock/videos/14162870/thumb/1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    /*background: black!important;*/
+    /*color: white !important;*/
 }
 #game-title{
     text-align: center;
