@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         highScoreText.innerText = `High Score: ${localStorage.getItem("highScore")}`
     }
-    //brb
+    function timer
     
     
 })

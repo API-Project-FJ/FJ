@@ -3,7 +3,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     /*background: black!important;*/
-    /*color: white !important;*/
+    color: white !important;
 }
 #game-title{
     text-align: center;
