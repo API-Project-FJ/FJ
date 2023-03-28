@@ -111,9 +111,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 `This movie features ${cast}.`,
                 `Here's some background info on this movie: ${backgroundInfo}.`
             ];
+            
             console.log("correct answer")
             nextRound()
         } else if (movieRating[0] < movieRating[1] && movieClicked === "second") {
+            
             scoreCount++
             score.innerText = `Score: ${scoreCount}`;
             hintMessages = [
@@ -122,12 +124,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 `This movie features ${cast}.`,
                 `Here's some background info on this movie: ${backgroundInfo}.`
             ];
+            
             console.log("correct answer")
             nextRound()
         } else {
             hintMessages = ["wrong answer"];
             console.log("wrong answer")
-            nextRound()
+            movieRating = [];
+            endGame();
         }
         
         console.log({hintMessages});
@@ -163,7 +167,30 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         highScoreText.innerText = `High Score: ${localStorage.getItem("highScore")}`
     }
-    // function timer
+   
+    
+    function endGame(){
+       
+        let highScore = localStorage.getItem("highScore")
+        if (highScore === null){
+            localStorage.setItem("highScore", scoreCount)
+        }
+        else if (highScore < scoreCount){
+            localStorage.setItem("highScore", scoreCount)
+        }
+        highScoreText.innerText = `High Score: ${localStorage.getItem("highScore")}`
+        alert(`Game Over! Your score was ${scoreCount}.`)
+        scoreCount = 0;
+        score.innerText = `Score: ${scoreCount}`;
+        nextRound()      
+        
+    }
+    //function that makes the selected movie a green glow through css
+    function makeMovieGlowGreen(){
+        secondMovie.classList.add("green-glow")
+        setTimeout(() => firstMovie.classList.remove("green-glow"), 1000)
+    }
+
     
     
 });
