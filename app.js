@@ -1,5 +1,7 @@
 import { API_KEY } from "./api-key.js";
 
+localStorage.setItem("scoreCount", 0);
+
 const popoverTriggerList = [].slice.call(
     document.querySelectorAll('[data-bs-toggle="popover"]')
 );
@@ -21,7 +23,7 @@ const highScoreText = document.querySelector(".highScoreContainer");
 const buttonOne = document.querySelector(".buttonOne");
 const buttonTwo = document.querySelector(".buttonTwo");
 
-let scoreCount = 0;
+let scoreCount = parseInt(localStorage.getItem("scoreCount"),10);
 let movieRating = [];
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -125,11 +127,9 @@ const setData = async (poster, title) => {
             director,
             releaseDate,
         });
-        
-            poster.src = titles.primaryImage.url;
-            title.innerText = titles.titleText.text;
-        
-       
+
+        poster.src = titles.primaryImage.url;
+        title.innerText = titles.titleText.text;
         scoreText.innerText = `Score: ${scoreCount}`;
     } catch (error) {
         clearData();
@@ -174,9 +174,10 @@ const checkRating = (movieClicked) => {
         scoreCount++;
         nextRound();
     } else {
-        // nextRound();
+        nextRound();
         endGame();
     }
+    localStorage.setItem("scoreCount",scoreCount);
 };
 
 const updateHighScore = () => {
@@ -214,13 +215,12 @@ function endGame() {
     } else if (highScore < scoreCount) {
         localStorage.setItem("highScore", scoreCount);
     }
-    highScoreText.innerText = `High Score: ${localStorage.getItem(
+    /*highScoreText.innerText = `High Score: ${localStorage.getItem(
         "highScore"
     )}`;
     alert(`Game Over! Your score was ${scoreCount}.`);
-    scoreCount = 0;
-    scoreText.innerText = `Score: ${scoreCount}`;
-    nextRound();
+    scoreText.innerText = `Score: ${scoreCount}`;*/
+    window.location.href = 'lose.html';
 }
 //function that makes the selected movie a green glow through css
 function makeMovieGlowGreen() {

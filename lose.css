@@ -1,0 +1,27 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 50%;
+  min-height: 100vh;
+  color:white;
+  font-size: 40px;
+}
+
+h1{
+    margin-bottom: 20px;
+}
+
+.btn{
+    margin-top: 10px;
+}
+
