@@ -107,6 +107,7 @@ const getDirectors = (directors) =>
 const setData = async (poster, title) => {
     try {
         const data = await fetchData();
+        console.log(data)
         const { titles, creators, ratings } = data;
 
         const rating = ratings.averageRating;
