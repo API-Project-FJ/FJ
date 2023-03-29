@@ -125,9 +125,11 @@ const setData = async (poster, title) => {
             director,
             releaseDate,
         });
-
-        poster.src = titles.primaryImage.url;
-        title.innerText = titles.titleText.text;
+        
+            poster.src = titles.primaryImage.url;
+            title.innerText = titles.titleText.text;
+        
+       
         scoreText.innerText = `Score: ${scoreCount}`;
     } catch (error) {
         clearData();
@@ -172,8 +174,8 @@ const checkRating = (movieClicked) => {
         scoreCount++;
         nextRound();
     } else {
-        nextRound();
-        //endGame();
+        // nextRound();
+        endGame();
     }
 };
 
