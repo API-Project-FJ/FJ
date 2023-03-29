@@ -3,13 +3,14 @@ body {
   background: URL(https://ak.picdn.net/shutterstock/videos/14162870/thumb/1.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-
+  height: 100vh;
 }
 
 
 img {
-
-  width: 20ch;
+  
+  width: clamp(125px, 20vw, 200px);
+  
 
 }
 
@@ -17,7 +18,7 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 100px;
+  margin-top: 350px;
 
 }
 
@@ -25,9 +26,8 @@ img {
   width: 100%;
   height: 500px;
   margin: 0 auto;
-
+  
   -webkit-perspective: 800;
-  /* For compatibility with iPhone 3.0, we leave off the units here */
   -webkit-perspective-origin: 50% 225px;
 }
 
@@ -53,7 +53,7 @@ img {
 .plane {
   position: absolute;
   border: 1px dashed black;
-
+  
   -webkit-transition: -webkit-transform 1s, opacity 2s;
   -webkit-backface-visibility: hidden;
   /* // hides the back of the image */
@@ -75,7 +75,9 @@ img {
 
 
 
+
 /* ---------- ring styles ------------- */
+
 .ring>.one {
   -webkit-transform: translateZ(380px);
 }

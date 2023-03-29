@@ -36,10 +36,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // async function upcomingMovies() {
+  //   try{
+  //     const response = await fetch()
+  //     const data = await response.json();
+  //     console.log(data)
+  //   }
+  //   catch(error){
+  //     console.error('Error fetching data:', error);
+  //   }
+  // }
+  // upcomingMovies();
   fetchThenSetStartPosters();
 
-  //   function setStartPosters() {
-
-  //   }
+  
   //   setStartPosters();
 });
