@@ -1,5 +1,5 @@
 body {
-    background:URL(https://ak.picdn.net/shutterstock/videos/14162870/thumb/1.jpg);
+    background: URL(https://ak.picdn.net/shutterstock/videos/14162870/thumb/1.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
@@ -7,21 +7,22 @@ body {
     /*background: black!important;*/
     color: white !important;
 }
-#game-title{
+
+#game-title {
     text-align: center;
     font-size: 50px;
     margin-top: 25px;
-    
+
 }
 
 .img {
-  width: 300px;
-  height: 480px;
-  border: 5px dashed rgb(255, 187, 0);
+    width: 300px;
+    height: 480px;
+    border: 5px dashed rgb(255, 187, 0);
 }
 
-.gameContainer{
-    
+.gameContainer {
+
     display: grid;
     grid-template-columns: 1fr 1fr;
 
@@ -29,45 +30,54 @@ body {
     justify-items: center;
     margin-top: 50px;
 }
-.movie{
+
+.movie {
     font-size: 30px;
     text-align: center;
     cursor: pointer;
     
-    
+
 }
-.movie-glow-red{
+
+.movie-glow-red {
     border: 5px dashed red;
     animation: glow-red 1s ease-in-out infinite alternate;
 }
-.green-glow{
+
+.green-glow {
     border: 5px dashed green;
     animation: glow-green 1s ease-in-out infinite alternate;
 }
-@keyframes glow-red{
-    from{
+
+@keyframes glow-red {
+    from {
         box-shadow: 0 0 10px red, 0 0 40px red, 0 0 80px red;
     }
-    to{
+
+    to {
         box-shadow: 0 0 20px red, 0 0 50px red, 0 0 100px red;
     }
 }
-@keyframes glow-green{
-    from{
+
+@keyframes glow-green {
+    from {
         box-shadow: 0 0 10px green, 0 0 40px green, 0 0 80px green;
     }
-    to{
+
+    to {
         box-shadow: 0 0 20px green, 0 0 50px green, 0 0 100px green;
     }
 }
-.img:hover{
-    
+
+.img:hover {
+
     transform: scale(1.1);
 }
+
 /* /to do */
 /* //if movie is correct it will change the border color to green
 // if movie is incorrect it will change the border color to red */
-#score-section{
+#score-section {
     display: flex;
     font-size: 30px;
     margin: 30px;
@@ -78,4 +88,3 @@ body {
 /* //shows color for movie title  */
 
 /* //tug of war on hover enlarges the image and changes the color of the border the main moive color theme */
-

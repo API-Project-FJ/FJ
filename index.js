@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
       'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
     }
   };
-  
+
   let randomPage = Math.floor(Math.random() * Math.floor(5) + 1);
   async function fetchThenSetStartPosters() {
 

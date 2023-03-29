@@ -1,11 +1,11 @@
 import { API_KEY } from "./api-key.js";
 
 const popoverTriggerList = [].slice.call(
-  document.querySelectorAll('[data-bs-toggle="popover"]')
+    document.querySelectorAll('[data-bs-toggle="popover"]')
 );
 
 const popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-  return new bootstrap.Popover(popoverTriggerEl);
+    return new bootstrap.Popover(popoverTriggerEl);
 });
 
 const firstMoviePoster = document.getElementById("first-movie-poster");
@@ -25,23 +25,23 @@ let scoreCount = 0;
 let movieRating = [];
 
 document.addEventListener("DOMContentLoaded", () => {
-  firstMovie.addEventListener("click", () => {
-    checkRating("first");
-  });
+    firstMoviePoster.addEventListener("click", () => {
+        checkRating("firstMovie");
+    });
 
-  secondMovie.addEventListener("click", () => {
-    checkRating("second");
-  });
+    secondMoviePoster.addEventListener("click", () => {
+        checkRating("secondMovie");
+    });
 
-  buttonOne.addEventListener("click", () => {
-    checkInfo("first");
-  });
+    buttonOne.addEventListener("click", () => {
+        checkInfo("firstButton");
+    });
 
-  buttonTwo.addEventListener("click", () => {
-    checkInfo("second");
-  });
+    buttonTwo.addEventListener("click", () => {
+        checkInfo("secondButton");
+    });
 
-  nextRound();
+    nextRound();
 });
 
 const movies = [];
@@ -51,180 +51,180 @@ let releaseDate = "";
 let plot = "";
 
 const requestOptions = {
-  method: "GET",
-  headers: {
-    "X-RapidAPI-Key": API_KEY,
-    "X-RapidAPI-Host": "moviesdatabase.p.rapidapi.com",
-  },
+    method: "GET",
+    headers: {
+        "X-RapidAPI-Key": API_KEY,
+        "X-RapidAPI-Host": "moviesdatabase.p.rapidapi.com",
+    },
 };
 
 const fetchMovies = async (page) => {
-  const moviesUrl = `https://moviesdatabase.p.rapidapi.com/titles?list=most_pop_movies&limit=50&page=${page}`;
+    const moviesUrl = `https://moviesdatabase.p.rapidapi.com/titles?list=most_pop_movies&limit=50&page=${page}`;
 
-  try {
-    const req = await fetch(moviesUrl, requestOptions);
-    const response = await req.json();
+    try {
+        const req = await fetch(moviesUrl, requestOptions);
+        const response = await req.json();
 
-    return response;
-  } catch (err) {
-    console.error(err);
-  }
+        return response;
+    } catch (err) {
+        console.error(err);
+    }
 };
- 
+
 
 const fetchData = async () => {
-  const randomMovie = Math.floor(Math.random() * Math.floor(50));
-  const randomPage = Math.floor(Math.random() * Math.floor(5) + 1);
+    const randomMovie = Math.floor(Math.random() * Math.floor(50));
+    const randomPage = Math.floor(Math.random() * Math.floor(5) + 1);
 
-  try {
-    const moviesResponse = await fetchMovies(randomPage);
-    const id = moviesResponse.results[randomMovie].id;
+    try {
+        const moviesResponse = await fetchMovies(randomPage);
+        const id = moviesResponse.results[randomMovie].id;
 
-    const titlesUrl = `https://moviesdatabase.p.rapidapi.com/titles/${id}?info=base_info`;
-    const creatorsUrl = `https://moviesdatabase.p.rapidapi.com/titles/${id}?info=creators_directors_writers`;
-    const ratingsUrl = `https://moviesdatabase.p.rapidapi.com/titles/${id}/ratings`;
+        const titlesUrl = `https://moviesdatabase.p.rapidapi.com/titles/${id}?info=base_info`;
+        const creatorsUrl = `https://moviesdatabase.p.rapidapi.com/titles/${id}?info=creators_directors_writers`;
+        const ratingsUrl = `https://moviesdatabase.p.rapidapi.com/titles/${id}/ratings`;
 
-    const [titles, creators, ratings] = await Promise.all([
-      (await fetch(titlesUrl, requestOptions)).json(),
-      (await fetch(creatorsUrl, requestOptions)).json(),
-      (await fetch(ratingsUrl, requestOptions)).json(),
-    ]);
+        const [titles, creators, ratings] = await Promise.all([
+            (await fetch(titlesUrl, requestOptions)).json(),
+            (await fetch(creatorsUrl, requestOptions)).json(),
+            (await fetch(ratingsUrl, requestOptions)).json(),
+        ]);
 
-    return {
-      id,
-      titles: titles.results,
-      creators: creators.results,
-      ratings: ratings.results,
-    };
-  } catch (err) {
-    console.error(err);
-  }
+        return {
+            id,
+            titles: titles.results,
+            creators: creators.results,
+            ratings: ratings.results,
+        };
+    } catch (err) {
+        console.error(err);
+    }
 };
 
 const getDirectors = (directors) =>
-  directors.credits.map((director) => director.name.nameText.text);
+    directors.credits.map((director) => director.name.nameText.text);
 
 const setData = async (poster, title) => {
-  try {
-    const data = await fetchData();
-    const { titles, creators, ratings } = data;
+    try {
+        const data = await fetchData();
+        const { titles, creators, ratings } = data;
 
-    const rating = ratings.averageRating;
-    director = getDirectors(creators.directors[0])[0];
-    plot = titles.plot.plotText.plainText;
-    releaseDate = new Date(
-      titles.releaseDate.day,
-      titles.releaseDate.month,
-      titles.releaseDate.year
-    );
+        const rating = ratings.averageRating;
+        director = getDirectors(creators.directors[0])[0];
+        plot = titles.plot.plotText.plainText;
+        releaseDate = new Date(
+            titles.releaseDate.day,
+            titles.releaseDate.month,
+            titles.releaseDate.year
+        );
 
-    movies.push({
-      plot,
-      rating,
-      director,
-      releaseDate,
-    });
+        movies.push({
+            plot,
+            rating,
+            director,
+            releaseDate,
+        });
 
-    poster.src = titles.primaryImage.url;
-    title.innerText = titles.titleText.text;
-    scoreText.innerText = `Score: ${scoreCount}`;
-  } catch (error) {
-    clearData();
-    console.error("Error fetching data:", error);
-  }
+        poster.src = titles.primaryImage.url;
+        title.innerText = titles.titleText.text;
+        scoreText.innerText = `Score: ${scoreCount}`;
+    } catch (error) {
+        clearData();
+        console.error("Error fetching data:", error);
+    }
 };
 
 const createHintMessages = (messages) =>
-  messages.map((message) => {
-    const elem = document.createElement("p");
-    elem.innerHTML = message;
+    messages.map((message) => {
+        const elem = document.createElement("p");
+        elem.innerHTML = message;
 
-    return elem;
-  });
+        return elem;
+    });
 
-const checkInfo = (movieClicked = "first") => {
-  let hintMessages = [];
-  const index = movieClicked === "first" ? 0 : 1;
+const checkInfo = (movieClicked = "firstButton") => {
+    let hintMessages = [];
+    const index = movieClicked === "firstButton" ? 0 : 1;
+    console.log(movies)
+    hintMessages = [
+        `This movie was released in ${movies[index].releaseDate}.`,
+        `The director of this movie is ${movies[index].director}.`,
+        `Here's some background info on this movie: ${movies[index].plot}.`,
+    ];
 
-  hintMessages = [
-    `This movie was released in ${movies[index].releaseDate}.`,
-    `The director of this movie is ${movies[index].director}.`,
-    `Here's some background info on this movie: ${movies[index].plot}.`,
-  ];
-
-  const hintMessage = createHintMessages(hintMessages);
-  const modalBody = document.querySelector(".modal-body");
-console.log(modalBody);
-  if (modalBody) {
-    modalBody.replaceChildren(...hintMessage);
-  }
+    const hintMessage = createHintMessages(hintMessages);
+    const modalBody = document.querySelector(".modal-body");
+    console.log(modalBody);
+    if (modalBody) {
+        modalBody.replaceChildren(...hintMessage);
+    }
 };
 
 const checkRating = (movieClicked) => {
-  const firstRating = movies[0].rating;
-  const secondRating = movies[1].rating;
+    const firstRating = movies[0].rating;
+    const secondRating = movies[1].rating;
 
-  if (firstRating > secondRating && movieClicked === "first") {
-    scoreCount++;
-    nextRound();
-  } else if (firstRating < secondRating && movieClicked === "second") {
-    scoreCount++;
-    nextRound();
-  } else {
-    nextRound();
-    //endGame();
-  }
+    if (firstRating > secondRating && movieClicked === "firstMovie") {
+        scoreCount++;
+        nextRound();
+    } else if (firstRating < secondRating && movieClicked === "secondMovie") {
+        scoreCount++;
+        nextRound();
+    } else {
+        nextRound();
+        //endGame();
+    }
 };
 
 const updateHighScore = () => {
-  const highScore = parseInt(localStorage.getItem("highScore"), 10);
+    const highScore = parseInt(localStorage.getItem("highScore"), 10);
 
-  if (highScore === null || scoreCount > highScore) {
-    localStorage.setItem("highScore", scoreCount);
-    highScoreText.innerText = `High Score: ${scoreCount}`;
-  } else {
-    highScoreText.innerText = `High Score: ${highScore}`
-  }
+    if (highScore === null || scoreCount > highScore) {
+        localStorage.setItem("highScore", scoreCount);
+        highScoreText.innerText = `High Score: ${scoreCount}`;
+    } else {
+        highScoreText.innerText = `High Score: ${highScore}`
+    }
 };
 
 const clearData = () => {
-  while (movies.length > 0) {
-    movies.pop();
-  }
+    while (movies.length > 0) {
+        movies.pop();
+    }
 };
 
 const nextRound = async () => {
-  clearData();
-  updateHighScore();
+    clearData();
+    updateHighScore();
 
-  // The data can potentially come in as null, handle that case
-  Promise.all([
-    await setData(firstMoviePoster, firstMovieTitle),
-    await setData(secondMoviePoster, secondMovieTitle),
-  ]);
+    // The data can potentially come in as null, handle that case
+    Promise.all([
+        await setData(firstMoviePoster, firstMovieTitle),
+        await setData(secondMoviePoster, secondMovieTitle),
+    ]);
 };
 
-  function endGame() {
+function endGame() {
     let highScore = localStorage.getItem("highScore");
     if (highScore === null) {
-      localStorage.setItem("highScore", scoreCount);
+        localStorage.setItem("highScore", scoreCount);
     } else if (highScore < scoreCount) {
-      localStorage.setItem("highScore", scoreCount);
+        localStorage.setItem("highScore", scoreCount);
     }
     highScoreText.innerText = `High Score: ${localStorage.getItem(
-      "highScore"
+        "highScore"
     )}`;
     alert(`Game Over! Your score was ${scoreCount}.`);
     scoreCount = 0;
     scoreText.innerText = `Score: ${scoreCount}`;
     nextRound();
-  }
-  //function that makes the selected movie a green glow through css
-  function makeMovieGlowGreen() {
+}
+//function that makes the selected movie a green glow through css
+function makeMovieGlowGreen() {
     secondMovie.classList.add("green-glow");
     setTimeout(() => firstMovie.classList.remove("green-glow"), 1000);
-  }
-  
+}
+
 //
 //to do
 //hide api key //done
