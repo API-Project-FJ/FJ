@@ -23,7 +23,7 @@ const highScoreText = document.querySelector(".highScoreContainer");
 const buttonOne = document.querySelector(".buttonOne");
 const buttonTwo = document.querySelector(".buttonTwo");
 
-let scoreCount = parseInt(localStorage.getItem("scoreCount"),10);
+let scoreCount = parseInt(localStorage.getItem("scoreCount"), 10);
 let movieRating = [];
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -107,35 +107,54 @@ const getDirectors = (directors) =>
     directors.credits.map((director) => director.name.nameText.text);
 
 const setData = async (poster, title) => {
-    try {
-        const data = await fetchData();
-        console.log(data)
-        const { titles, creators, ratings } = data;
+    let data;
+    let isImageAccessible = false;
 
-        const rating = ratings.averageRating;
-        director = getDirectors(creators.directors[0])[0];
-        plot = titles.plot.plotText.plainText;
-        releaseDate = new Date(
-            titles.releaseDate.day,
-            titles.releaseDate.month,
-            titles.releaseDate.year
-        );
+    while (!isImageAccessible) {
+        try {
+            data = await fetchData();
+            const { titles, creators, ratings } = data;
 
-        movies.push({
-            plot,
-            rating,
-            director,
-            releaseDate,
-        });
+            const imageUrl = titles.primaryImage.url;
 
-        poster.src = titles.primaryImage.url;
-        title.innerText = titles.titleText.text;
-        scoreText.innerText = `Score: ${scoreCount}`;
-    } catch (error) {
-        clearData();
-        console.error("Error fetching data:", error);
+            if (imageUrl !== null) {
+                // Check if the image is accessible (status 200)
+                const imageResponse = await fetch(imageUrl, { method: 'HEAD' });
+
+                if (imageResponse.status === 200) {
+                    isImageAccessible = true;
+                }
+            }
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
     }
+
+    const { titles, creators, ratings } = data;
+
+    const rating = ratings.averageRating;
+    director = getDirectors(creators.directors[0])[0];
+    plot = titles.plot.plotText.plainText;
+    releaseDate = new Date(
+        titles.releaseDate.day,
+        titles.releaseDate.month,
+        titles.releaseDate.year
+    );
+
+    movies.push({
+        plot,
+        rating,
+        director,
+        releaseDate,
+    });
+
+    poster.src = titles.primaryImage.url;
+    title.innerText = titles.titleText.text;
+    scoreText.innerText = `Score: ${scoreCount}`;
+
+    return data;
 };
+
 
 const createHintMessages = (messages) =>
     messages.map((message) => {
@@ -177,7 +196,7 @@ const checkRating = (movieClicked) => {
         nextRound();
         endGame();
     }
-    localStorage.setItem("scoreCount",scoreCount);
+    localStorage.setItem("scoreCount", scoreCount);
 };
 
 const updateHighScore = () => {
@@ -201,11 +220,22 @@ const nextRound = async () => {
     clearData();
     updateHighScore();
 
-    // The data can potentially come in as null, handle that case
-    Promise.all([
-        await setData(firstMoviePoster, firstMovieTitle),
-        await setData(secondMoviePoster, secondMovieTitle),
-    ]);
+    let firstMovieData, secondMovieData;
+    let duplicates = true;
+
+    while (duplicates) {
+        await setData(firstMoviePoster, firstMovieTitle).then((data) => {
+            firstMovieData = data;
+        });
+
+        await setData(secondMoviePoster, secondMovieTitle).then((data) => {
+            secondMovieData = data;
+        });
+
+        if (firstMovieData.titles.primaryImage.url !== secondMovieData.titles.primaryImage.url) {
+            duplicates = false;
+        }
+    }
 };
 
 function endGame() {
@@ -215,11 +245,7 @@ function endGame() {
     } else if (highScore < scoreCount) {
         localStorage.setItem("highScore", scoreCount);
     }
-    /*highScoreText.innerText = `High Score: ${localStorage.getItem(
-        "highScore"
-    )}`;
-    alert(`Game Over! Your score was ${scoreCount}.`);
-    scoreText.innerText = `Score: ${scoreCount}`;*/
+
     window.location.href = 'lose.html';
 }
 //function that makes the selected movie a green glow through css
@@ -227,32 +253,3 @@ function makeMovieGlowGreen() {
     secondMovie.classList.add("green-glow");
     setTimeout(() => firstMovie.classList.remove("green-glow"), 1000);
 }
-
-//
-//to do
-//hide api key //done
-//refactor to use async await //done
-// figure out way to get the next 50 movies //done
-//re roll if url is null or resource not found //done
-
-//to do later
-//store the imdb rating for each movie
-//add selectors to both movies
-//add event listener to both movies
-//compare movies to see which one has the higher rating
-//if the selected movie is the same as the one with the higher rating, the user scores points
-//if the selected movie is the same as the one with the lower rating, loses the game
-
-//hints
-// Date released
-// Background info
-// Cast
-// Director
-// Genre
-//
-
-//known bugs
-//costantine gives 404 error and does not load image + game does not re roll
-//Failed to load resource: the server responded with a status of 404 ()
-//tess glitch
-//movieData array sometimes has 3 items instead of 2 causing incorrect comparsion for ratings

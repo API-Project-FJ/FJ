@@ -12,43 +12,50 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   let randomPage = Math.floor(Math.random() * Math.floor(5) + 1);
+
+  async function setImageSrc(poster, imageUrl) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => {
+        poster.src = imageUrl;
+        resolve(true);
+      };
+      img.onerror = () => {
+        resolve(false);
+      };
+      img.src = imageUrl;
+    });
+  }
+
   async function fetchThenSetStartPosters() {
-
     try {
-
-      const response = await fetch(`https://moviesdatabase.p.rapidapi.com/titles?list=most_pop_movies&limit=50&page=${randomPage}`, options)
+      const response = await fetch(`https://moviesdatabase.p.rapidapi.com/titles?list=most_pop_movies&limit=50&page=${randomPage}`, options);
       const data = await response.json();
-      console.log(data)
-      arrOfStartPosters.forEach(poster => {
-        let randomPosterNum = Math.floor(Math.random() * Math.floor(50))
-        if( data.results[randomPosterNum].primaryImage.url) {
-        poster.src = data.results[randomPosterNum].primaryImage.url
-        }else{
-          console.log("error")
+      console.log(data);
+
+      for (const poster of arrOfStartPosters) {
+        let success = false;
+        let attempts = 0;
+
+        while (!success && attempts < data.results.length) {
+          let randomPosterNum = Math.floor(Math.random() * Math.floor(50));
+          const imageUrl = data.results[randomPosterNum].primaryImage.url;
+
+          if (imageUrl) {
+            success = await setImageSrc(poster, imageUrl);
+          }
+
+          attempts++;
         }
 
-      })
-
-    }
-    catch (error) {
+        if (!success) {
+          console.log("Unable to set an image for the poster");
+        }
+      }
+    } catch (error) {
       console.error('Error fetching data:', error);
-      
     }
   }
 
-  // async function upcomingMovies() {
-  //   try{
-  //     const response = await fetch()
-  //     const data = await response.json();
-  //     console.log(data)
-  //   }
-  //   catch(error){
-  //     console.error('Error fetching data:', error);
-  //   }
-  // }
-  // upcomingMovies();
   fetchThenSetStartPosters();
-
-  
-  //   setStartPosters();
 });
