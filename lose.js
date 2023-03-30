@@ -1,54 +1,85 @@
 document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("btn1").addEventListener('click', () => window.location.href = 'index.html');
-    document.getElementById("btn2").addEventListener('click', () => window.location.href = 'game.html');
-    const highScore = parseInt(localStorage.getItem("highScore"), 10);
-    const scoreCount = parseInt(localStorage.getItem("scoreCount"), 10);
+  document
+    .getElementById("btn1")
+    .addEventListener("click", () => (window.location.href = "index.html"));
+  document
+    .getElementById("btn2")
+    .addEventListener("click", () => (window.location.href = "game.html"));
+  const highScore = parseInt(localStorage.getItem("highScore"), 10);
+  const scoreCount = parseInt(localStorage.getItem("scoreCount"), 10);
 
-    document.querySelector(".highScoreContainer").innerText = `High Score: ${highScore}`;
-    document.querySelector(".scoreContainer").innerText = `Score: ${scoreCount}`;
+  document.querySelector(
+    ".highScoreContainer"
+  ).innerText = `High Score: ${highScore}`;
+  document.querySelector(".scoreContainer").innerText = `Score: ${scoreCount}`;
 
-    let body = document.body;
-    let refresh;
+  let body = document.body;
+  let refresh;
 
+  // Add code from the first block
+  const scoreMessages = [
+    `Damn! ${scoreCount}, you suck, keep practicing!`,
+    `${scoreCount} that's low, but you can improve with practice.`,
+    `${scoreCount} that's average, not bad but not great either`,
+    `${scoreCount}, keep it up!`,
+    `Nice! ${scoreCount}, You scored very high, you're a pro!`,
+  ];
 
-    // Duration count in seconds
-    const duration = 1000 * 10;
-    // Giphy API defaults
-    const giphy = {
-        baseURL: "https://api.giphy.com/v1/gifs/",
-        apiKey: "0UTRbFtkMxAplrohufYco5IY74U8hOes",
-        tag: "fail",
-        type: "random",
-        rating: "pg-13",
-    };
+  const getMessageFromScore = (score) => {
+    if (score < 2) {
+      return scoreMessages[0];
+    } else if (score < 5) {
+      return scoreMessages[1];
+    } else if (score < 10) {
+      return scoreMessages[2];
+    } else if (score < 15) {
+      return scoreMessages[3];
+    } else {
+      return scoreMessages[4];
+    }
+  };
 
-    let giphyURL = encodeURI(
-        giphy.baseURL +
-        giphy.type +
-        "?api_key=" +
-        giphy.apiKey +
-        "&tag=" +
-        giphy.tag +
-        "&rating=" +
-        giphy.rating
-    );
+  const scoreMessage = getMessageFromScore(scoreCount);
+  const scoreMessageElement = document.querySelector(".scoreMessageContainer");
+  scoreMessageElement.innerText = scoreMessage;
 
-    const renderGif = (gif) => {
-        console.log({ gif });
-        body.style.backgroundImage = `url('${gif.data.images.original.url}')`;
-    };
+  // Duration count in seconds
+  const duration = 1000 * 10;
+  // Giphy API defaults
+  const giphy = {
+    baseURL: "https://api.giphy.com/v1/gifs/",
+    apiKey: "0UTRbFtkMxAplrohufYco5IY74U8hOes",
+    tag: "fail",
+    type: "random",
+    rating: "pg-13",
+  };
 
-    const newGif = async () => {
-        try {
-            const req = await fetch(giphyURL);
-            const res = await req.json();
+  let giphyURL = encodeURI(
+    giphy.baseURL +
+      giphy.type +
+      "?api_key=" +
+      giphy.apiKey +
+      "&tag=" +
+      giphy.tag +
+      "&rating=" +
+      giphy.rating
+  );
 
-            renderGif(res);
-        }
-        catch (err) {
-            console.log(err);
-        }
-    };
+  const renderGif = (gif) => {
+    console.log({ gif });
+    body.style.backgroundImage = `url('${gif.data.images.original.url}')`;
+  };
 
-    newGif();
+  const newGif = async () => {
+    try {
+      const req = await fetch(giphyURL);
+      const res = await req.json();
+
+      renderGif(res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  newGif();
 });
