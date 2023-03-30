@@ -169,7 +169,6 @@ const checkInfo = (movieClicked = "firstButton") => {
     const index = movieClicked === "firstButton" ? 0 : 1;
     console.log(movies)
     hintMessages = [
-        `This movie was released in ${movies[index].releaseDate}.`,
         `The director of this movie is ${movies[index].director}.`,
         `Here's some background info on this movie: ${movies[index].plot}.`,
     ];
@@ -178,7 +177,7 @@ const checkInfo = (movieClicked = "firstButton") => {
     const modalBody = document.querySelector(".modal-body");
     console.log(modalBody);
     if (modalBody) {
-        modalBody.replaceChildren(...hintMessage);
+        modalBody.replaceChildren(...hintMessage); 
     }
 };
 
