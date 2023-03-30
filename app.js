@@ -193,7 +193,6 @@ const checkRating = (movieClicked) => {
         scoreCount++;
         nextRound();
     } else {
-        nextRound();
         endGame();
     }
     localStorage.setItem("scoreCount", scoreCount);
