@@ -84,6 +84,26 @@ body {
     justify-content: space-evenly;
 }
 
+/* Target the button with the .buttonTwo class */
+#btn{
+  background-color: black;
+  color: #ffffff;
+  border: none;
+  border-radius: 20%;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  width: 150px;
+}
+
+/* Change the hover color of the button */
+#btn:hover {
+  background-color: #6c757d;
+  transition: background-color 0.3s ease;
+}
+
+
 /* //shows color for movie title  */
 
 /* //tug of war on hover enlarges the image and changes the color of the border the main moive color theme */
