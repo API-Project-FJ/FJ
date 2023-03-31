@@ -39,6 +39,11 @@ img {
   -webkit-transform-style: preserve-3d;
 }
 
+.start-poster {
+  height: 285px;
+  width: 200px;
+  object-fit: contain;
+}
 #shape {
 
   position: relative;
@@ -49,16 +54,29 @@ img {
   width: 200px;
   -webkit-transform-style: preserve-3d;
 }
+@keyframes flashingBorder {
+  0% {
+    border-color: gold;
+  }
+  50% {
+    border-color: transparent;
+  }
+  100% {
+    border-color: gold;
+  }
+}
 
 .plane {
   position: absolute;
-  border: 1px dashed black;
-  
+  border: 8px outset gold;
+  animation: flashingBorder 1.85s infinite;
   -webkit-transition: -webkit-transform 1s, opacity 2s;
   -webkit-backface-visibility: hidden;
   /* // hides the back of the image */
 }
 
+  
+  
 #shape {
   -webkit-animation: spin 30s infinite linear;
 }

@@ -16,7 +16,7 @@
 
 <body>
     <div id="game-title">
-        <h1 class="text-white">Which Movie is Rated Higher ?</h1>
+        <h1 class="text-white">Reviews </h1>
     </div>
 
     <div class="row" id="movie-reviews"></div>
@@ -27,7 +27,7 @@
         crossorigin="anonymous"></script>
     <script>
 
-fetch(`https://api.nytimes.com/svc/movies/v2/reviews/all.json?api-key=${""}`)
+fetch(`https://api.nytimes.com/svc/movies/v2/reviews/all.json?api-key=${"wq77Gdgvetdb5sa7ff8jsI8IwSwuxDm0"}`)
   .then(response => response.json())
   .then(data => {
     // Get the first 10 movie reviews
