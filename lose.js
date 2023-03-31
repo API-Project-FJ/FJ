@@ -19,9 +19,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // Add code from the first block
   const scoreMessages = [
     `Damn! ${scoreCount}, you suck, keep practicing!`,
-    `${scoreCount} that's low, but you can improve with practice.`,
-    `${scoreCount} that's average, not bad but not great either`,
-    `${scoreCount}, keep it up!`,
+    `Is that all you got? ${scoreCount}? I'll give you a participation trophy for trying.`,
+    
+    `Hmm, ${scoreCount}? Not bad, but not exactly winning the game either. Keep going!`,
+    `Hmm, ${scoreCount}... I've seen better, but I'm sure you'll bounce back stronger next time!`,
+    `Well, ${scoreCount} isn't terrible, but it's not quite unicorn level either. Keep practicing, you'll get there!`,
     `Nice! ${scoreCount}, You scored very high, you're a pro!`,
   ];
 

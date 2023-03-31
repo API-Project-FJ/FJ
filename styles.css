@@ -39,7 +39,7 @@ body {
 
 }
 
-.movie-glow-red {
+/*.movie-glow-red {
     border: 5px dashed red;
     animation: glow-red 1s ease-in-out infinite alternate;
 }
@@ -67,7 +67,27 @@ body {
     to {
         box-shadow: 0 0 20px green, 0 0 50px green, 0 0 100px green;
     }
-}
+}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .img:hover {
 
