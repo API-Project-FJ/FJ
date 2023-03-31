@@ -69,7 +69,7 @@ img {
 .plane {
   position: absolute;
   border: 8px outset gold;
-  animation: flashingBorder .9s infinite;
+  animation: flashingBorder 1.85s infinite;
   -webkit-transition: -webkit-transform 1s, opacity 2s;
   -webkit-backface-visibility: hidden;
   /* // hides the back of the image */
