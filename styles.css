@@ -4,7 +4,6 @@ body {
     background-size: cover;
     height: 100vh;
     width: 100vw;
-    /*background: black!important;*/
     color: white !important;
 }
 
@@ -35,59 +34,7 @@ body {
     font-size: 30px;
     text-align: center;
     cursor: pointer;
-    
-
 }
-
-/*.movie-glow-red {
-    border: 5px dashed red;
-    animation: glow-red 1s ease-in-out infinite alternate;
-}
-
-.green-glow {
-    border: 5px dashed green;
-    animation: glow-green 1s ease-in-out infinite alternate;
-}
-
-@keyframes glow-red {
-    from {
-        box-shadow: 0 0 10px red, 0 0 40px red, 0 0 80px red;
-    }
-
-    to {
-        box-shadow: 0 0 20px red, 0 0 50px red, 0 0 100px red;
-    }
-}
-
-@keyframes glow-green {
-    from {
-        box-shadow: 0 0 10px green, 0 0 40px green, 0 0 80px green;
-    }
-
-    to {
-        box-shadow: 0 0 20px green, 0 0 50px green, 0 0 100px green;
-    }
-}*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .img:hover {
 
@@ -104,7 +51,6 @@ body {
     justify-content: space-evenly;
 }
 
-/* Target the button with the .buttonTwo class */
 #btn{
   background-color: black;
   color: #ffffff;
@@ -117,13 +63,32 @@ body {
   width: 150px;
 }
 
-/* Change the hover color of the button */
 #btn:hover {
   background-color: #6c757d;
   transition: background-color 0.3s ease;
 }
 
 
+#first-movie.correct,
+#second-movie.correct {
+  background-color: #fff;
+  box-shadow: 0 0 60px 30px #fff,
+  0 0 100px 60px #A7F3D0,
+  0 0 140px 90px #54C8A1;
+  /* light green */
+  }
+  
+#first-movie.incorrect,
+#second-movie.incorrect {
+  background-color: #fff;
+  box-shadow: 
+  0 0 60px 30px #fff,
+  0 0 100px 60px #FFB6C1,
+  0 0 140px 90px #FF69B4;
+}
+
+
 /* //shows color for movie title  */
 
 /* //tug of war on hover enlarges the image and changes the color of the border the main moive color theme */
+

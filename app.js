@@ -182,20 +182,33 @@ const checkInfo = (movieClicked = "firstButton") => {
 };
 
 const checkRating = (movieClicked) => {
-    const firstRating = movies[0].rating;
-    const secondRating = movies[1].rating;
+  const firstRating = movies[0].rating;
+  const secondRating = movies[1].rating;
 
-    if (firstRating > secondRating && movieClicked === "firstMovie") {
-        scoreCount++;
-        nextRound();
-    } else if (firstRating < secondRating && movieClicked === "secondMovie") {
-        scoreCount++;
-        nextRound();
-    } else {
-        endGame();
-    }
-    localStorage.setItem("scoreCount", scoreCount);
+  if (firstRating > secondRating && movieClicked === "firstMovie") {
+    scoreCount++;
+    firstMovie.classList.add("correct");
+    secondMovie.classList.add("incorrect");
+    setTimeout(() => {
+      firstMovie.classList.remove("correct");
+      secondMovie.classList.remove("incorrect");
+      nextRound();
+    }, 1000);
+  } else if (firstRating < secondRating && movieClicked === "secondMovie") {
+    scoreCount++;
+    secondMovie.classList.add("correct");
+    firstMovie.classList.add("incorrect");
+    setTimeout(() => {
+      secondMovie.classList.remove("correct");
+      firstMovie.classList.remove("incorrect");
+      nextRound();
+    }, 1000);
+  } else {
+    endGame();
+  }
+  localStorage.setItem("scoreCount", scoreCount);
 };
+
 
 const updateHighScore = () => {
     const highScore = parseInt(localStorage.getItem("highScore"), 10);
