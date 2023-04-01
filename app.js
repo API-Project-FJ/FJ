@@ -1,17 +1,12 @@
+const incorrectSound = new Audio("images/incorrect.mp3");
+const correctSound = new Audio("images/correct.mp3");
+
+
 //The code imports an API key from a separate file
 import { API_KEY } from "./api-key.js";
 
 //The code sets an initial score count of 0 in local storage
 localStorage.setItem("scoreCount", 0);
-
-//The code uses the Bootstrap framework to create popovers and store them in a popover list
-const popoverTriggerList = [].slice.call(
-  document.querySelectorAll('[data-bs-toggle="popover"]')
-);
-
-const popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-  return new bootstrap.Popover(popoverTriggerEl);
-});
 
 //The code defines variables for various elements on the page, such as movie posters and titles, buttons, and score containers
 const firstMoviePoster = document.getElementById("first-movie-poster");
@@ -202,6 +197,7 @@ const checkRating = (movieClicked) => {
 
   if (firstRating > secondRating && movieClicked === "firstMovie") {
     scoreCount++;
+    correctSound.play();
     firstMovie.classList.add("correct");
     secondMovie.classList.add("incorrect");
     setTimeout(() => {
@@ -211,6 +207,7 @@ const checkRating = (movieClicked) => {
     }, 1000);
   } else if (firstRating < secondRating && movieClicked === "secondMovie") {
     scoreCount++;
+    correctSound.play();
     secondMovie.classList.add("correct");
     firstMovie.classList.add("incorrect");
     setTimeout(() => {
@@ -219,6 +216,7 @@ const checkRating = (movieClicked) => {
       nextRound();
     }, 1000);
   } else {
+    incorrectSound.play();
     endGame();
   }
   localStorage.setItem("scoreCount", scoreCount);
@@ -277,6 +275,7 @@ function endGame() {
   } else if (highScore < scoreCount) {
     localStorage.setItem("highScore", scoreCount);
   }
-
+  
+  incorrectSound.play();
   window.location.href = "lose.html";
 }
