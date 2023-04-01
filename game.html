@@ -1,74 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Higher or Lower</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous" />
-</head>
-
-<body>
-  
-  <div id="game-title">
-    <h1 class="title">Which Movie is Rated Higher ?</h1>
-  </div>
-  
-  <div id="score-section">
-    <div class="highScoreContainer">
-      <h1 class="title">High Score: </h1>
-    </div>
-    <div class="scoreContainer">
-      <h1 class="title">Score: </h1>
-    </div>
-  </div>
-  
-  <div class="gameContainer">
-    <div class="movie" id="first-movie">
-      <img id="first-movie-poster" class="img" src="" />
-      <h1 id="first-movie-title" class="title"></h1>
-      <div class="buttonContainer">
-        <button id ="btn" type="button" class="btn btn-primary buttonOne" data-bs-toggle="modal" data-bs-target="#infoModal">View Info</button>
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Higher or Lower</title>
+      <link rel="stylesheet" href="styles.css" />
+      <link
+         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
+         rel="stylesheet"
+         integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
+         crossorigin="anonymous"
+         />
+   </head>
+   <body>
+      <header>
+         <div id="game-title">
+            <h1 class="title">Which Movie is Rated Higher ?</h1>
+         </div>
+      </header>
+      <main>
+         <section id="score-section">
+            <div class="highScoreContainer">
+               <h2>High Score: </h2>
+            </div>
+            <div class="scoreContainer">
+               <h2>Score: </h2>
+            </div>
+         </section>
+         <section class="gameContainer">
+            <article class="movie" id="first-movie">
+               <figure>
+                  <img id="first-movie-poster" class="img" src="" alt="Movie Poster" />
+                  <figcaption id="first-movie-title" class="title"></figcaption>
+               </figure>
+               <div class="buttonContainer">
+                  <button
+                     id="btn"
+                     type="button"
+                     class="btn btn-primary buttonOne"
+                     data-bs-toggle="modal"
+                     data-bs-target="#infoModal"
+                     >
+                  View Info
+                  </button>
+               </div>
+            </article>
+            <img id="vs" src="vs.png" alt="VS" />
+            <article class="movie" id="second-movie">
+               <figure>
+                  <img id="second-movie-poster" class="img" src="" alt="Movie Poster" />
+                  <figcaption id="second-movie-title" class="title"></figcaption>
+               </figure>
+               <div class="buttonContainer">
+                  <button
+                     id="btn"
+                     type="button"
+                     class="btn btn-primary buttonTwo"
+                     data-bs-toggle="modal"
+                     data-bs-target="#infoModal"
+                     >
+                  View Info
+                  </button>
+               </div>
+            </article>
+         </section>
+      </main>
+      <!-- Modal -->
+      <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h2 class="modal-title fs-5" id="exampleModalLabel">Movie Info</h2>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+               </div>
+               <div class="modal-body text-dark">...</div>
+               <div class="modal-footer text-dark">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div>
       </div>
-    </div>
-    
-        <img id="vs" src="vs.png" alt="VS"/>
-    
-    <div class="movie" id="second-movie">
-      <img id="second-movie-poster" class="img" src="" />
-      <h1 id="second-movie-title" class="title"></h1>
-      <div class="buttonContainer">
-        <button id ="btn" type="button" class="btn btn-primary buttonTwo" data-bs-toggle="modal" data-bs-target="#infoModal">View
-          Info</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal -->
-  <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Movie Info</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body text-dark">
-          ...
-        </div>
-        <div class="modal-footer text-dark">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
-    crossorigin="anonymous"></script>
-  <script type="module" src="app.js" defer></script>
-</body>
-
+      <script
+         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+         integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+         crossorigin="anonymous"
+         ></script>
+      <script type="module" src="app.js" defer></script>
+   </body>
 </html>

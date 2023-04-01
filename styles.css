@@ -1,94 +1,63 @@
 body {
-    background: URL(https://ak.picdn.net/shutterstock/videos/14162870/thumb/1.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100vh;
-    width: 100vw;
-    color: white !important;
+     background: URL(https://ak.picdn.net/shutterstock/videos/14162870/thumb/1.jpg);
+     background-repeat: no-repeat;
+     background-size: cover;
+     height: 100vh;
+     width: 100vw;
+     color: white !important;
 }
-
-#game-title {
-    text-align: center;
-    font-size: 50px;
-    margin-top: 25px;
-
+ #game-title {
+     text-align: center;
+     font-size: 50px;
+     margin-top: 25px;
 }
-
-.img {
-    width: 300px;
-    height: 480px;
-    border: 5px dashed rgb(255, 187, 0);
+ .img {
+     width: 300px;
+     height: 480px;
+     border: 5px dashed rgb(255, 187, 0);
 }
-
-.gameContainer {
-
-    display: grid;
-    grid-template-columns: 2fr 1fr 2fr;
-
-    grid-gap: 10px;
-    justify-items: center;
-    margin-top: 50px;
+ .gameContainer {
+     display: grid;
+     grid-template-columns: 2fr 1fr 2fr;
+     grid-gap: 10px;
+     justify-items: center;
+     margin-top: 50px;
 }
-
-.movie {
-    font-size: 30px;
-    text-align: center;
-    cursor: pointer;
+ .movie {
+     font-size: 30px;
+     text-align: center;
+     cursor: pointer;
 }
-
-.img:hover {
-
-    transform: scale(1.1);
+ .img:hover {
+     transform: scale(1.1);
 }
-
-/* /to do */
-/* //if movie is correct it will change the border color to green
-// if movie is incorrect it will change the border color to red */
-#score-section {
-    display: flex;
-    font-size: 30px;
-    margin: 30px;
-    justify-content: space-evenly;
+ #score-section {
+     display: flex;
+     font-size: 30px;
+     margin: 30px;
+     justify-content: space-evenly;
 }
-
-#btn{
-  background-color: black;
-  color: #ffffff;
-  border: none;
-  border-radius: 20%;
-  padding: 10px 20px;
-  font-size: 20px;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-  width: 150px;
+ #btn{
+     background-color: black;
+     color: #ffffff;
+     border: none;
+     border-radius: 20%;
+     padding: 10px 20px;
+     font-size: 20px;
+     font-weight: bold;
+     transition: background-color 0.3s ease;
+     width: 150px;
 }
-
-#btn:hover {
-  background-color: #6c757d;
-  transition: background-color 0.3s ease;
+ #btn:hover {
+     background-color: #6c757d;
+     transition: background-color 0.3s ease;
 }
-
-
-#first-movie.correct,
-#second-movie.correct {
-  background-color: #fff;
-  box-shadow: 0 0 60px 30px #fff,
-  0 0 100px 60px #A7F3D0,
-  0 0 140px 90px #54C8A1;
-  /* light green */
-  }
-  
-#first-movie.incorrect,
-#second-movie.incorrect {
-  background-color: #fff;
-  box-shadow: 
-  0 0 60px 30px #fff,
-  0 0 100px 60px #FFB6C1,
-  0 0 140px 90px #FF69B4;
+ #first-movie.correct, #second-movie.correct {
+     background-color: #fff;
+     box-shadow: 0 0 60px 30px #fff, 0 0 100px 60px #A7F3D0, 0 0 140px 90px #54C8A1;
 }
-
-
-/* //shows color for movie title  */
-
-/* //tug of war on hover enlarges the image and changes the color of the border the main moive color theme */
-
+ #first-movie.incorrect, #second-movie.incorrect {
+     background-color: #fff;
+     box-shadow: 0 0 60px 30px #fff, 0 0 100px 60px #FFB6C1, 0 0 140px 90px #FF69B4;
+}
+ 

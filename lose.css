@@ -1,59 +1,53 @@
 body {
-  width: 100vw;
-  height: 100vh;
-  background-size: cover;
-  margin: 0;
-  padding: 0;
+     width: 100vw;
+     height: 100vh;
+     background-size: cover;
+     margin: 0;
+     padding: 0;
 }
-
-.container {
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  flex-direction: column;
-  width: 50%;
-  min-height: 100vh;
-  font-size: 40px;
-  color: rgba(255, 255, 255, 0.8); /* semi-transparent white */
-  text-shadow: 2px 2px 3px black;
-  font-weight: bold;
+ .container {
+     display: flex;
+     text-align: center;
+     justify-content: center;
+     flex-direction: column;
+     width: 50%;
+     min-height: 100vh;
+     font-size: 40px;
+     color: rgba(255, 255, 255, 0.8);
+     text-shadow: 2px 2px 3px black;
+     font-weight: bold;
 }
-
-h1{
-    margin-bottom: 20px;
+ h1{
+     margin-bottom: 20px;
 }
-
-.btn{
-    margin-top: 10px;
+ .btn{
+     margin-top: 10px;
 }
-
-.scoreMessageContainer{
-  color: rgba(255, 255, 255, 0.8); /* semi-transparent white */
-  text-shadow: 2px 2px 3px black;
-  font-size: 25px;
-  font-weight: normal;
+ .scoreMessageContainer{
+     color: rgba(255, 255, 255, 0.8);
+     text-shadow: 2px 2px 3px black;
+     font-size: 25px;
+     font-weight: normal;
 }
-
-.btn {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  gap: 30px;
+ .btn {
+     display: flex;
+     flex-direction: row;
+     justify-content: center;
+     gap: 30px;
 }
-
-.btn button {
-  border-radius: 20%;
-  background-color: black;
-  padding: 10px 20px;
-  border: none;
-  color: #ffffff;
-  font-size: 16px;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-  width: 150px;
+ .btn button {
+     border-radius: 20%;
+     background-color: black;
+     padding: 10px 20px;
+     border: none;
+     color: #ffffff;
+     font-size: 16px;
+     font-weight: bold;
+     transition: background-color 0.3s ease;
+     width: 150px;
 }
-
-.btn button:hover {
-  background-color: #6c757d;
-  transition: background-color 0.3s ease;
+ .btn button:hover {
+     background-color: #6c757d;
+     transition: background-color 0.3s ease;
 }
+ 
