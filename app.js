@@ -82,7 +82,7 @@ const fetchMovies = async (page) => {
 //The code defines a fetchData() function that fetches data for a random movie using fetchMovies(), and then fetches additional data for that movie, such as ratings and creators.
 const fetchData = async () => {
   const randomMovie = Math.floor(Math.random() * Math.floor(50));
-  const randomPage = Math.floor(Math.random() * Math.floor(5) + 1);
+  const randomPage = Math.floor(Math.random() * Math.floor(10) + 1);
 
   try {
     const moviesResponse = await fetchMovies(randomPage);
@@ -275,7 +275,7 @@ function endGame() {
   } else if (highScore < scoreCount) {
     localStorage.setItem("highScore", scoreCount);
   }
-  
+
   incorrectSound.play();
   window.location.href = "lose.html";
 }

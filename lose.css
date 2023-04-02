@@ -1,22 +1,25 @@
 body {
-     width: 100vw;
-     height: 100vh;
      background-size: cover;
      margin: 0;
      padding: 0;
-}
+     overflow: hidden;
+ }
+ 
+
+ 
  .container {
      display: flex;
+     height: 100vh;
      text-align: center;
      justify-content: center;
      flex-direction: column;
      width: 50%;
-     min-height: 100vh;
      font-size: 40px;
      color: rgba(255, 255, 255, 0.8);
      text-shadow: 2px 2px 3px black;
      font-weight: bold;
-}
+ }
+ 
  h1{
      margin-bottom: 20px;
 }

@@ -2,42 +2,49 @@ body {
      background: URL(https://ak.picdn.net/shutterstock/videos/14162870/thumb/1.jpg);
      background-repeat: no-repeat;
      background-size: cover;
-     height: 100vh;
-     width: 100vw;
-     color: white !important;
+     color: white;
+     font-family: "Shrikhand", cursive;
+
 }
- #game-title {
+
+#game-title {
      text-align: center;
      font-size: 50px;
      margin-top: 25px;
 }
- .img {
+
+.img {
      width: 300px;
      height: 480px;
      border: 5px dashed rgb(255, 187, 0);
 }
- .gameContainer {
+
+.gameContainer {
      display: grid;
      grid-template-columns: 2fr 1fr 2fr;
      grid-gap: 10px;
      justify-items: center;
      margin-top: 50px;
 }
- .movie {
+
+.movie {
      font-size: 30px;
      text-align: center;
      cursor: pointer;
 }
- .img:hover {
+
+.img:hover {
      transform: scale(1.1);
 }
- #score-section {
+
+#score-section {
      display: flex;
      font-size: 30px;
      margin: 30px;
      justify-content: space-evenly;
 }
- #btn{
+
+#btn {
      background-color: black;
      color: #ffffff;
      border: none;
@@ -48,16 +55,61 @@ body {
      transition: background-color 0.3s ease;
      width: 150px;
 }
- #btn:hover {
+
+#btn:hover {
      background-color: #6c757d;
      transition: background-color 0.3s ease;
 }
- #first-movie.correct, #second-movie.correct {
+
+#first-movie.correct,
+#second-movie.correct {
      background-color: #fff;
      box-shadow: 0 0 60px 30px #fff, 0 0 100px 60px #A7F3D0, 0 0 140px 90px #54C8A1;
 }
- #first-movie.incorrect, #second-movie.incorrect {
+
+#first-movie.incorrect,
+#second-movie.incorrect {
      background-color: #fff;
      box-shadow: 0 0 60px 30px #fff, 0 0 100px 60px #FFB6C1, 0 0 140px 90px #FF69B4;
 }
- 
+
+/* Navbar */
+.navbar {
+     z-index: 1;
+     position: sticky !important;
+     top: 0;
+     background-color: #000;
+     font-family: 'Shrikhand', cursive;
+     opacity: 0.95;
+}
+
+
+
+.navbar .logo {
+     height: 80px;
+     width: auto;
+     cursor: pointer;
+}
+
+.nav-link {
+     color: #fff;
+     font-weight: bold;
+     margin-right: 10px;
+     text-transform: uppercase;
+     transition: all 0.3s ease;
+     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+     font-size: 26px;
+}
+
+.nav-link:hover {
+     color: #f00;
+     text-shadow: 2px 2px 4px rgba(255, 0, 0, 0.7);
+}
+
+.navbar-toggler {
+     border-color: #f00;
+}
+
+.navbar-toggler-icon {
+     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 0, 0, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
