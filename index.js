@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  let randomPage = Math.floor(Math.random() * Math.floor(5) + 1);
+  let randomPage = Math.floor(Math.random() * Math.floor(15) + 1);
 
   async function setImageSrc(poster, imageUrl) {
     return new Promise((resolve, reject) => {

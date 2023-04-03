@@ -143,17 +143,13 @@ const setData = async (poster, title) => {
   const rating = ratings.averageRating;
   director = getDirectors(creators.directors[0])[0];
   plot = titles.plot.plotText.plainText;
-  releaseDate = new Date(
-    titles.releaseDate.day,
-    titles.releaseDate.month,
-    titles.releaseDate.year
-  );
+  
 
   movies.push({
     plot,
     rating,
     director,
-    releaseDate,
+    
   });
 
   poster.src = titles.primaryImage.url;
