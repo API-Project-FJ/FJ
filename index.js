@@ -29,9 +29,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function fetchThenSetStartPosters() {
     try {
-      const response = await fetch(`https://moviesdatabase.p.rapidapi.com/titles?list=most_pop_movies&limit=50&page=${randomPage}`, options);
+      const response = await fetch(`https://moviesdatabase.p.rapidapi.com/titles?list=top_boxoffice_200&limit=50`, options);
       const data = await response.json();
-
+      console.log(data.results)
       for (const poster of arrOfStartPosters) {
         let success = false;
         let attempts = 0;

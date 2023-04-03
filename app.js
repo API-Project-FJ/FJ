@@ -67,7 +67,7 @@ const requestOptions = {
 
 //The code defines a fetchMovies() function that fetches movie data from an API.
 const fetchMovies = async (page) => {
-  const moviesUrl = `https://moviesdatabase.p.rapidapi.com/titles?list=most_pop_movies&limit=50&page=${page}`;
+  const moviesUrl = `https://moviesdatabase.p.rapidapi.com/titles?list=top_boxoffice_200&limit=50`;
 
   try {
     const req = await fetch(moviesUrl, requestOptions);
