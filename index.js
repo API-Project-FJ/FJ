@@ -31,7 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const response = await fetch(`https://moviesdatabase.p.rapidapi.com/titles?list=most_pop_movies&limit=50&page=${randomPage}`, options);
       const data = await response.json();
-      console.log(data);
 
       for (const poster of arrOfStartPosters) {
         let success = false;
@@ -47,6 +46,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
           attempts++;
         }
+
+
 
         if (!success) {
           console.log("Unable to set an image for the poster");

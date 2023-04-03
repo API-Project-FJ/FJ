@@ -145,3 +145,32 @@ img {
   -webkit-transform: rotateY(330deg) translateZ(380px);
 }
 
+/* Add this at the bottom of your CSS file */
+@media (max-width: 767px) {
+  /* Adjust start-game positioning */
+  .start-game {
+      margin-top: 100px;
+  }
+
+  /* Adjust container height */
+  #container {
+      height: 300px;
+      -webkit-perspective-origin: 50% 150px;
+  }
+
+  /* Adjust shape positioning */
+  #shape {
+      top: 80px;
+  }
+
+  /* Adjust start-poster dimensions */
+  .start-poster {
+      height: 160px;
+      width: 120px;
+  }
+
+  /* Adjust ring plane positioning */
+  .ring > * {
+      -webkit-transform: scale(0.8) translateY(-20px) translateZ(380px);
+  }
+}
